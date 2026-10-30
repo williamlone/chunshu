@@ -8,6 +8,11 @@ paginate: 10
 taxonomies:
   category: categories
   tag: tags
+permalinks:
+  taxonomy:
+    category: /category/
+  term:
+    category: /category/:slug/
 params:
   description: A writer's life
   comments: true
