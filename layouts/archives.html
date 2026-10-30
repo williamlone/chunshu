@@ -1,0 +1,16 @@
+{{ define "main" }}
+	<div class="post type-post hentry">
+		<h1 class="entry-title">{{ .Title }}</h1>
+		<div class="entry-content">
+			{{ $posts := where site.RegularPages "Section" "posts" }}
+			{{ range $posts.GroupByDate "2006" }}
+				<h2 class="archives-year">{{ .Key }}</h2>
+				<ul class="archives-list">
+					{{ range .Pages }}
+						<li><time>{{ .Date.Format "2006-01-02" }}</time><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+					{{ end }}
+				</ul>
+			{{ end }}
+		</div>
+	</div>
+{{ end }}

@@ -1,31 +1,22 @@
 baseURL: https://www.chunshu.org
-languageCode: zh-CN
+locale: zh-CN
 title: 春树 Chun Shu
 theme: PaperMod
+hasCJKLanguage: true
+summaryLength: 200
+paginate: 10
 taxonomies:
   category: categories
   tag: tags
 params:
   description: A writer's life
-  defaultTheme: auto
-  disableThemeToggle: true
-  showShareButtons: true
-  showReadingTime: true
-  showToc: false
-  showBreadCrumbs: true
-  showCodeCopyButtons: true
   comments: true
-  hideFooter: true
-  assets:
-    favicon: /favicon.ico
-    disableHLJS: true
   author:
     name: admin
 markup:
   highlight:
     codeFences: true
     guessSyntax: true
-    style: monokai
   goldmark:
     renderer:
       unsafe: true
@@ -39,4 +30,40 @@ outputFormats:
     mediaType: application/rss+xml
     baseName: feed
 menu:
-  main: []
+  main:
+    - identifier: home
+      name: 首页
+      url: /
+      weight: 1
+    - identifier: about
+      name: 关于
+      url: /about/
+      weight: 2
+    - identifier: book
+      name: 电子阅读
+      url: /book/
+      weight: 3
+    - name: 混日子
+      url: http://read.douban.com/ebook/1766290/
+      parent: book
+      weight: 31
+    - name: 出埃及记
+      url: http://read.douban.com/ebook/1849448/
+      parent: book
+      weight: 32
+    - name: 超级月亮
+      url: http://read.douban.com/ebook/1853785/
+      parent: book
+      weight: 33
+    - name: 光年之美国梦
+      url: http://read.douban.com/ebook/1863069/
+      parent: book
+      weight: 34
+    - identifier: copyright
+      name: 版权声明
+      url: /copyright/
+      weight: 4
+    - identifier: support
+      name: 支持
+      url: /buymecubalibre/
+      weight: 5

@@ -1,0 +1,27 @@
+{{ $pag := .Paginator }}
+{{ if gt $pag.TotalPages 1 }}
+<div class='wp-pagenavi' role='navigation'>
+	<span class='pages'>第 {{ $pag.PageNumber }} 页，共 {{ $pag.TotalPages }} 页</span>
+
+	{{/* Window: first page, current ±2, last page, gaps filled with "..." */}}
+	{{ $last := 0 }}
+	{{ range $pag.Pagers }}
+		{{ $n := .PageNumber }}
+		{{ $show := or (eq $n 1) (eq $n $pag.TotalPages) (and (ge $n (sub $pag.PageNumber 2)) (le $n (add $pag.PageNumber 2))) }}
+		{{ if $show }}
+			{{ if gt (sub $n $last) 1 }}<span class='extend'>...</span>{{ end }}
+			{{ if eq . $pag }}
+				<span aria-current='page' class='current'>{{ $n }}</span>
+			{{ else }}
+				<a class="page larger" title="Page {{ $n }}" href="{{ .URL }}">{{ $n }}</a>
+			{{ end }}
+			{{ $last = $n }}
+		{{ end }}
+	{{ end }}
+
+	{{ if $pag.HasNext }}
+		<a class="nextpostslink" rel="next" href="{{ $pag.Next.URL }}">&raquo;</a>
+		<a class="last" href="{{ $pag.Last.URL }}">最旧 &raquo;</a>
+	{{ end }}
+</div>
+{{ end }}

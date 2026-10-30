@@ -1,0 +1,45 @@
+{{ define "main" }}
+	{{ $page := . }}
+	{{ $commentCount := 0 }}
+	{{ with hugo.Data.comments }}
+		{{ $commentCount = len (where . "post_id" ($page.Params.post_id | default "")) }}
+	{{ end }}
+
+	<!--BEGIN .hentry -->
+	<div class="post-{{ $page.Params.post_id }} post type-post status-publish format-standard hentry" id="post-{{ $page.Params.post_id }}">
+		<h1 class="entry-title">{{ $page.Title }}</h1>
+
+		<!--BEGIN .entry-meta .entry-header-->
+		<div class="entry-meta entry-header">
+			<span>by</span> ChunSue <span>on</span> {{ $page.Date.Format "2006年1月2日" }}
+			{{ with $page.GetTerms "categories" }}<span>in</span> {{ range $i, $term := . }}{{ if $i }}, {{ end }}<a href="{{ $term.RelPermalink }}" rel="category tag">{{ $term.LinkTitle }}</a>{{ end }}{{ end }}
+			<span>with</span> <a href="#comments">{{ if eq $commentCount 0 }}No comments{{ else }}{{ $commentCount }} comment{{ if gt $commentCount 1 }}s{{ end }}{{ end }}</a>
+		<!--END .entry-meta entry-header -->
+		</div>
+
+		<!--BEGIN .entry-content -->
+		<div class="entry-content">
+			{{ $page.Content }}
+		<!--END .entry-content -->
+		</div>
+
+		<!--BEGIN .entry-footer -->
+		<div class="entry-footer"></div>
+		<!--END .entry-footer -->
+
+	<!--END .hentry-->
+	</div>
+
+	{{ if eq $page.Section "posts" }}
+		<!--BEGIN .single-page-navigation -->
+		<div class="single-page-navigation page-navigation clearfix">
+			<div class="nav-previous">{{ with $page.PrevInSection }}<a href="{{ .RelPermalink }}" rel="prev">&laquo; {{ .Title }}</a>{{ end }}</div>
+			<div class="nav-next">{{ with $page.NextInSection }}<a href="{{ .RelPermalink }}" rel="next">{{ .Title }} &raquo;</a>{{ end }}</div>
+		<!--END .single-page-navigation -->
+		</div>
+	{{ end }}
+
+	{{ if .Site.Params.comments }}
+		{{ partial "comments.html" . }}
+	{{ end }}
+{{ end }}

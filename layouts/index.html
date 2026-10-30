@@ -1,0 +1,12 @@
+{{ define "main" }}
+	{{ $paginator := .Paginate (where site.RegularPages "Section" "posts") }}
+	{{ range $paginator.Pages }}
+		{{ partial "post-entry.html" . }}
+	{{ end }}
+
+	<!--BEGIN .navigation .page-navigation -->
+	<div class="navigation page-navigation clearfix">
+		{{ partial "pagination.html" . }}
+	<!--END .navigation .page-navigation -->
+	</div>
+{{ end }}

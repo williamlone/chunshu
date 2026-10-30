@@ -1,0 +1,35 @@
+{{ define "main" }}
+	<div class="post type-post hentry">
+		<h1 class="entry-title">{{ .Title }}</h1>
+		<div class="entry-content">
+			<input id="search-input" type="text" placeholder="{{ .Params.placeholder | default "搜索…" }}" />
+			<ul id="search-results"></ul>
+		</div>
+	</div>
+	<script>
+	(function () {
+		var input = document.getElementById("search-input");
+		var results = document.getElementById("search-results");
+		var data = [];
+		fetch("{{ "index.json" | relURL }}")
+			.then(function (r) { return r.json(); })
+			.then(function (d) { data = d || []; });
+		input.addEventListener("input", function () {
+			var q = input.value.trim().toLowerCase();
+			results.innerHTML = "";
+			if (q.length < 2) { return; }
+			data.filter(function (item) {
+				return (item.title || "").toLowerCase().indexOf(q) !== -1;
+			}).slice(0, 20).forEach(function (item) {
+				var li = document.createElement("li");
+				var a = document.createElement("a");
+				a.href = item.permalink;
+				a.className = "title";
+				a.textContent = item.title;
+				li.appendChild(a);
+				results.appendChild(li);
+			});
+		});
+	})();
+	</script>
+{{ end }}

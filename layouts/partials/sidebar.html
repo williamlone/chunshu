@@ -1,0 +1,48 @@
+<!--BEGIN #sidebar .aside-->
+<div id="sidebar" class="aside">
+
+	<!-- BEGIN #logo -->
+	<div id="logo">
+		<a class="logo-link" href="{{ .Site.BaseURL }}"><img src="{{ "wp-content/uploads/2013/12/Chunsue-logo.png" | relURL }}" alt="{{ .Site.Title }}" /></a>
+	<!-- END #logo -->
+	</div>
+
+	<div class="widget widget_links clearfix">
+		<h3 class="widget-title">常用链接</h3>
+		<ul class="xoxo blogroll">
+			<li><a href="https://www.facebook.com/chun.sue" title="春树的Facebook">Facebook</a></li>
+			<li><a href="https://weibo.com/springtree">春树微博</a></li>
+			<li><a href="http://site.douban.com/127212/">春树的豆瓣小站</a></li>
+			<li><a href="http://www.douban.com/group/chunsue/">春树豆瓣小组</a></li>
+			<li><a href="{{ "contact/" | relURL }}">联系我们</a></li>
+		</ul>
+	</div>
+
+	<div class="widget widget_recent_entries clearfix">
+		<h3 class="widget-title">近期文章</h3>
+		<ul>
+			{{ range first 5 (where site.RegularPages "Section" "posts") }}
+				<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+			{{ end }}
+		</ul>
+	</div>
+
+	<div class="widget widget_categories clearfix">
+		<h3 class="widget-title">分类</h3>
+		<ul>
+			{{ range .Site.Taxonomies.categories.Alphabetical }}
+				<li class="cat-item"><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></li>
+			{{ end }}
+		</ul>
+	</div>
+
+	<div class="widget widget_meta clearfix">
+		<h3 class="widget-title">其他操作</h3>
+		<ul>
+			<li><a href="{{ "feed.xml" | relURL }}">条目 feed</a></li>
+			<li><a href="https://gohugo.io/">Hugo</a></li>
+		</ul>
+	</div>
+
+<!--END #sidebar .aside-->
+</div>

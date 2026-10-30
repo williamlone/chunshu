@@ -1,0 +1,29 @@
+<!-- Render one post entry in WP Premium Pixels style. Expects a Page as context. -->
+{{ $page := . }}
+{{ $commentCount := 0 }}
+{{ with hugo.Data.comments }}
+	{{ $commentCount = len (where . "post_id" ($page.Params.post_id | default "")) }}
+{{ end }}
+<!--BEGIN .hentry -->
+<div class="post-{{ $page.Params.post_id }} post type-post status-publish format-standard hentry{{ range $page.GetTerms "categories" }} category-{{ .LinkTitle | urlize }}{{ end }}" id="post-{{ $page.Params.post_id }}">
+	<h2 class="entry-title"><a href="{{ $page.RelPermalink }}" rel="bookmark" title="Permanent Link to {{ $page.Title }}">{{ $page.Title }}</a></h2>
+
+	<!--BEGIN .entry-meta .entry-header-->
+	<div class="entry-meta entry-header">
+		<span>by</span> ChunSue <span>on</span> {{ $page.Date.Format "2006年1月2日" }}
+		{{ with $page.GetTerms "categories" }}<span>in</span> {{ range $i, $term := . }}{{ if $i }}, {{ end }}<a href="{{ $term.RelPermalink }}" rel="category tag">{{ $term.LinkTitle }}</a>{{ end }}{{ end }}
+		<span>with</span> <a href="{{ $page.RelPermalink }}#comments">{{ if eq $commentCount 0 }}No comments{{ else }}{{ $commentCount }} comment{{ if gt $commentCount 1 }}s{{ end }}{{ end }}</a>
+	<!--END .entry-meta entry-header -->
+	</div>
+
+	<!--BEGIN .entry-content -->
+	<div class="entry-content">
+		{{/* Strip <figure> blocks from the summary, mirroring the original WP excerpt behavior (e.g. post 608) */}}
+		{{ $summary := $page.Summary | replaceRE "(?s)<figure[^>]*>.*?</figure>" "" }}
+		{{ $summary | safeHTML }}
+		<p class="read-more"><a href="{{ $page.RelPermalink }}">阅读全文</a></p>
+	<!--END .entry-content -->
+	</div>
+
+<!--END .hentry-->
+</div>

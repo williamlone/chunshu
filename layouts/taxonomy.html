@@ -1,0 +1,14 @@
+{{ define "main" }}
+	<div class="post type-post hentry">
+		{{ $title := .Title }}
+		{{ if eq .Data.Singular "category" }}{{ $title = "分类" }}{{ else if eq .Data.Singular "tag" }}{{ $title = "标签" }}{{ end }}
+		<h1 class="entry-title">{{ $title }}</h1>
+		<div class="entry-content">
+			<ul class="taxonomy-list">
+				{{ range .Site.Taxonomies.categories.Alphabetical }}
+					<li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a> <span class="count">({{ .Count }})</span></li>
+				{{ end }}
+			</ul>
+		</div>
+	</div>
+{{ end }}

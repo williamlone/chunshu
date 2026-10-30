@@ -1,0 +1,16 @@
+{{ define "main" }}
+	{{ if not .IsHome }}
+		<h1 class="page-title">{{ .Title }}</h1>
+	{{ end }}
+
+	{{ $paginator := .Paginate .Pages }}
+	{{ range $paginator.Pages }}
+		{{ partial "post-entry.html" . }}
+	{{ end }}
+
+	<!--BEGIN .navigation .page-navigation -->
+	<div class="navigation page-navigation clearfix">
+		{{ partial "pagination.html" . }}
+	<!--END .navigation .page-navigation -->
+	</div>
+{{ end }}
