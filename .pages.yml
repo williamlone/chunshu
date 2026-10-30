@@ -33,6 +33,9 @@ content:
         label: 发布日期
         type: date
         required: true
+        options:
+          time: true
+          format: "yyyy-MM-dd'T'HH:mm:ssxxx"
       - name: categories
         label: 分类
         type: select
@@ -128,6 +131,17 @@ content:
       - name: body
         label: 正文
         type: rich-text
+      - name: date
+        label: 创建日期
+        type: date
+        hidden: true
+        options:
+          time: true
+          format: "yyyy-MM-dd'T'HH:mm:ssxxx"
+      - name: post_id
+        label: 页面 ID
+        type: string
+        hidden: true
       - name: author
         label: 作者
         type: string
