@@ -62,7 +62,7 @@ textarea {
 }
 
 body { 
-    background: url(images/bg-body.gif);
+    background: #f2efe9 url(images/bg-body.webp);
     min-width: 1020px;
 }
 
@@ -74,7 +74,7 @@ body {
 #primary {
     float: right;
     width: 580px;
-    background: url(images/bg-content-middle.png) repeat-y;
+    background: url(images/bg-content-middle.webp) repeat-y;
     padding: 20px 55px 0 55px;
 }
 
@@ -230,7 +230,7 @@ a img { border: none }
 
 #header {
     height: 43px;
-    background: url(images/bg-header.gif) left top repeat-x;
+    background: url(images/bg-header.webp) left top repeat-x;
     margin-bottom: 30px;
     color: #cacbc6;
     text-shadow: 0 1px 1px rgba(0,0,0,0.5);
@@ -356,7 +356,7 @@ a img { border: none }
 }
 
 #content-top {
-    background: url(images/bg-content-top.png) no-repeat;
+    background: url(images/bg-content-top.webp) no-repeat;
     height: 40px;
     overflow: hidden;
     float: right;
@@ -364,7 +364,7 @@ a img { border: none }
 }
 
 #content-btm {
-    background: url(images/bg-content-btm.png) no-repeat;
+    background: url(images/bg-content-btm.webp) no-repeat;
     height: 40px;
     overflow: hidden;
     float: right;
@@ -1329,7 +1329,7 @@ ul.children li.comment .comment-body { margin: 0 0 0 50px }
 
 #footer { background: #25292b url(images/bg-footer.gif) repeat-x }
 
-#footer-texture { background: url(images/bg-foot-inner.jpg) center top no-repeat }
+#footer-texture { background: url(images/bg-foot-inner.webp) center top no-repeat }
 
 #footer-inner {
     margin: 0 auto;

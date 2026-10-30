@@ -135,7 +135,7 @@ h1.entry-title {
     #header {
         height: auto;
         padding: 4px 0;
-        background: url(images/bg-header.gif) left top repeat;
+        background: url(images/bg-header.webp) left top repeat;
     }
     .inner { width: auto; padding: 0 10px; }
     #top-nav { float: none; text-align: center; }
