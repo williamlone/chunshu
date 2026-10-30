@@ -123,3 +123,106 @@ h1.entry-title {
 
 /* 404 */
 .error-404 { padding: 40px 0; }
+
+/*-----------------------------------------------------------------------------------
+	Responsive — mobile-friendly overrides (desktop layout above 1020px is unchanged)
+-----------------------------------------------------------------------------------*/
+@media (max-width: 1020px) {
+
+    body { min-width: 0; }
+
+    /* Header: allow menu to wrap */
+    #header {
+        height: auto;
+        padding: 4px 0;
+        background: url(images/bg-header.gif) left top repeat;
+    }
+    .inner { width: auto; padding: 0 10px; }
+    #top-nav { float: none; text-align: center; }
+    #top-nav .sf-menu > li { float: none; display: inline-block; }
+    #top-nav .sf-menu > li > a {
+        background: none;
+        padding: 7px 8px;
+    }
+    #top-nav .sf-menu ul { min-width: 8em; text-align: left; }
+
+    /* Layout: single column, sidebar below content */
+    #content { width: auto; margin: 0 10px 40px; }
+    #content-wrap {
+        float: none;
+        width: auto;
+        background: #fff;
+        border-radius: 6px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+        padding-bottom: 20px;
+    }
+    /* rounded-corner decorations are fixed-width images; replace with CSS card */
+    #content-top,
+    #content-btm { display: none; }
+    #primary {
+        float: none;
+        width: auto;
+        background: none;
+        padding: 20px 20px 0;
+    }
+    #sidebar {
+        float: none;
+        width: auto;
+        padding: 10px 10px 0;
+    }
+    #logo { margin: 20px auto 30px; }
+    #logo .logo-link { padding: 0; display: block; text-align: center; }
+    #logo img { max-width: 100%; height: auto; }
+
+    /* Typography */
+    .entry-title,
+    .entry-title a { font-size: 24px; line-height: 28px; }
+    .entry-content h2,
+    .entry-content h3 { font-size: 22px; line-height: 28px; }
+
+    /* Widget lists: fluid two columns */
+    .widget_meta ul,
+    .widget_links ul,
+    .widget_pages ul,
+    .widget_categories ul,
+    .widget_archive ul,
+    .widget_nav_menu ul { width: auto; }
+    .widget_meta li,
+    .widget_links li,
+    .widget_pages li,
+    .widget_categories li,
+    .widget_archive li,
+    .widget_nav_menu li {
+        width: 46%;
+        margin-right: 4%;
+    }
+
+    /* Footer */
+    #footer-inner {
+        width: auto;
+        padding: 30px 15px 25px;
+        text-align: center;
+    }
+    #footer-columns { width: auto; }
+    #footer .column { float: none; width: auto; margin: 0; }
+
+    /* Two-column widget lists must account for padding */
+    .widget_meta li,
+    .widget_links li,
+    .widget_pages li,
+    .widget_categories li,
+    .widget_archive li,
+    .widget_nav_menu li { box-sizing: border-box; }
+
+    /* Prevent horizontal overflow from code blocks and embeds */
+    pre,
+    .highlight { overflow-x: auto; }
+    .entry-content iframe,
+    .entry-content video,
+    .entry-content embed,
+    .entry-content table { max-width: 100%; }
+
+    /* Author box fixed width */
+    .author-bio { width: auto; margin-left: 0; }
+    .author-info { width: auto; float: none; }
+}
