@@ -1,0 +1,125 @@
+/*-----------------------------------------------------------------------------------
+	Hugo adaptation styles — appended after the original Premium Pixels style.css
+-----------------------------------------------------------------------------------*/
+
+/* Prevent oversized images in migrated content */
+.entry-content img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Hugo renders markdown images inside <p>; keep WP-like framed look for plain images */
+.entry-content p > img:only-child {
+    background: #fcfcfc;
+    padding: 4px;
+    border: 1px solid #c8c8c2;
+    -moz-box-shadow: 0 0 3px rgba(0,0,0,0.1);
+    -webkit-box-shadow: 0 0 3px rgba(0,0,0,0.1);
+    box-shadow: 0 0 3px rgba(0,0,0,0.1);
+}
+
+/* Current menu item */
+#top-nav .sf-menu .current-menu-item > a,
+#top-nav .sf-menu .current-menu-ancestor > a { color: #f4f4f4; }
+
+/* Single post entry title */
+h1.entry-title {
+    border-bottom: 3px double #ebebeb;
+    padding: 5px 0;
+    margin-bottom: 8px;
+}
+
+/* Tags shown on single pages */
+#single-tags { text-align: right; }
+#single-tags a { color: #777; }
+
+/* Hugo Chroma code blocks */
+.highlight {
+    background: #efefef;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 20px;
+    overflow: auto;
+    font: 14px/20px Consolas, "Andale Mono", Courier, "Courier New", monospace;
+}
+.highlight pre { margin: 0; border: none; padding: 0; background: transparent; }
+
+/* Comments imported from WordPress (layouts/partials/comments.html) */
+#comments { margin: 30px 0; padding: 0; }
+#comments li {
+    margin: 0 0 20px 0;
+    background: url(images/bg-diag-pat.png) left bottom repeat-x;
+    padding-bottom: 6px;
+}
+#comments .comment-meta { margin: 0 0 5px; line-height: 22px; }
+#comments .comment-meta img {
+    vertical-align: middle;
+    margin-right: 8px;
+    width: 32px;
+    height: 32px;
+    padding: 2px;
+    background: #fcfcfc;
+    border: 1px solid #c8c8c2;
+}
+#comments .comment-meta a { color: #444; font-weight: bold; }
+#comments .comment-meta time {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #aaa;
+    margin-left: 8px;
+}
+#comments .comment-content p { margin-bottom: 15px; }
+#comments .children-comments { margin: 15px 0 0 40px; padding: 0; }
+#comments .children-comments li { background: none; border-top: 1px solid #ebebeb; padding: 15px 0 0 0; }
+
+/* Archives page (/all/) */
+.archives-year {
+    text-transform: uppercase;
+    border-bottom: 3px double #ebebeb;
+    padding: 30px 0 5px 0;
+    margin: 0 0 20px 0;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+    font-family: LeagueGothicRegular, "Helvetica Neue", Helvetica, Arial, Sans-serif;
+    font-size: 28px;
+    line-height: 32px;
+}
+.archives-list { list-style: none; margin: 0 0 20px 0; }
+.archives-list li { margin-bottom: 8px; }
+.archives-list time {
+    font-family: Georgia, serif;
+    font-style: italic;
+    color: #aaa;
+    margin-right: 10px;
+    font-size: 13px;
+}
+
+/* Taxonomy overview page (/categories/) */
+.taxonomy-list { list-style: none; margin: 0 0 30px 0; }
+.taxonomy-list li {
+    background: url(images/bg-side-bevel.gif) left bottom repeat-x;
+    line-height: 35px;
+    padding-left: 5px;
+}
+.taxonomy-list li span.count {
+    font-family: Georgia, serif;
+    font-style: italic;
+    color: #aaa;
+    font-size: 13px;
+}
+
+/* Search page */
+#search-input {
+    background: #F9F8F8;
+    border: 1px solid #c8c7c2;
+    box-shadow: 1px 1px 4px #ddd inset;
+    width: 95%;
+    color: #444;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+#search-results { list-style: none; margin: 0; }
+#search-results li { margin-bottom: 15px; }
+#search-results .title { font-size: 16px; }
+
+/* 404 */
+.error-404 { padding: 40px 0; }
