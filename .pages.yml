@@ -1,0 +1,186 @@
+# Pages CMS 配置：https://pagescms.org
+# 打开 https://app.pagescms.org 用 GitHub 账号登录，选择 williamlone/chunshu 仓库即可使用。
+
+# 图片等媒体的存放位置与写回内容中的公开路径
+media:
+  input: static/wp-content/uploads
+  output: /wp-content/uploads
+  extensions: [jpg, jpeg, png, gif, webp, svg, pdf]
+  rename: false
+
+content:
+  # ---------------- 文章 ----------------
+  - name: posts
+    label: 文章
+    type: collection
+    path: content/posts
+    filename:
+      template: "{year}-{month}-{day}-{title}.md"
+      field: false
+    view:
+      fields: [title, date, categories]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: 标题
+        type: string
+        required: true
+      - name: date
+        label: 发布日期
+        type: date
+        required: true
+      - name: categories
+        label: 分类
+        type: select
+        required: true
+        options:
+          multiple: true
+          values:
+            - name: novel
+              label: 小说
+            - name: poem
+              label: 诗歌
+            - name: article
+              label: 随笔
+            - name: feeling
+              label: 感悟
+            - name: review
+              label: 书评、诗评、人评
+            - name: book
+              label: 买书信息
+            - name: photo
+              label: 摄影
+            - name: lovewhowho
+              label: 爱谁谁
+            - name: other
+              label: 其他
+      - name: url
+        label: 固定链接
+        type: string
+        description: 旧文章为 /archives/N.html，请勿修改；新文章留空即可自动生成。
+      - name: post_id
+        label: 文章 ID
+        type: string
+        description: WordPress 迁移编号，用于评论关联；新文章可留空。
+      - name: body
+        label: 正文
+        type: rich-text
+        description: 正文中的 {{< figure >}} 等 Hugo 短代码在富文本编辑器中可能被改写，此类文章建议用代码方式编辑。
+      # 以下为 WordPress 迁移遗留字段，隐藏但仍会保留在文件中
+      - name: author
+        label: 作者
+        type: string
+        hidden: true
+      - name: guid
+        label: GUID
+        type: string
+        hidden: true
+      - name: _edit_last
+        label: _edit_last
+        type: string
+        hidden: true
+      - name: _encloseme
+        label: _encloseme
+        type: string
+        hidden: true
+      - name: duoshuo_thread_id
+        label: 多说评论 ID
+        type: string
+        hidden: true
+      - name: parent_post_id
+        label: parent_post_id
+        type: string
+        hidden: true
+      - name: views
+        label: 浏览量
+        type: string
+        hidden: true
+
+  # ---------------- 独立页面 ----------------
+  - name: pages
+    label: 页面
+    type: collection
+    path: content/pages
+    view:
+      layout: tree
+      node:
+        filename: index.md
+        hideDirs: others
+      fields: [title, url]
+      primary: title
+    operations:
+      create: false
+      rename: false
+      delete: false
+    fields:
+      - name: title
+        label: 标题
+        type: string
+        required: true
+      - name: url
+        label: 访问地址
+        type: string
+        description: 如 /about、/book，对应站点路径。
+      - name: body
+        label: 正文
+        type: rich-text
+      - name: author
+        label: 作者
+        type: string
+        hidden: true
+      - name: guid
+        label: GUID
+        type: string
+        hidden: true
+      - name: _edit_last
+        label: _edit_last
+        type: string
+        hidden: true
+      - name: _wp_page_template
+        label: 页面模板
+        type: string
+        hidden: true
+      - name: duoshuo_thread_id
+        label: 多说评论 ID
+        type: string
+        hidden: true
+      - name: parent_post_id
+        label: parent_post_id
+        type: string
+        hidden: true
+      - name: views
+        label: 浏览量
+        type: string
+        hidden: true
+
+  # ---------------- 分类 ----------------
+  - name: categories
+    label: 分类
+    type: collection
+    path: content/categories
+    view:
+      layout: tree
+      node:
+        filename: _index.md
+        hideDirs: others
+      fields: [title, url]
+      primary: title
+    operations:
+      create: false
+      rename: false
+      delete: false
+    fields:
+      - name: title
+        label: 显示名称
+        type: string
+        required: true
+        description: 侧边栏和文章里显示的中文名称，如「小说」。
+      - name: url
+        label: 分类地址
+        type: string
+        required: true
+        description: 如 /category/novel/，需与文件夹英文名保持一致。
