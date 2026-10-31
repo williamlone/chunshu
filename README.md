@@ -43,8 +43,7 @@
 │   └── wp-content/     # 迁移过来的图片等上传资源
 ├── .github/workflows/  # hugo.yaml，自动构建并部署
 ├── .pages.yml          # Pages CMS 配置
-├── hugo.yaml           # 站点配置
-└── nginx.conf          # 可选的本地 Nginx 预览配置
+└── hugo.yaml           # 站点配置
 ```
 
 ## 本地运行
@@ -95,15 +94,12 @@ hugo --gc --minify
 
 `guid`、`views`、`duoshuo_thread_id` 等为迁移遗留字段，可保留不动。
 
-**文章地址规则**：`hugo.yaml` 中配置了
+**文章地址规则**：新文章地址为 `/archives/<编号>.html`，与旧文章一致。
 
-```yaml
-permalinks:
-  page:
-    posts: /archives/:contentbasename.html
-```
-
-即文件名（不含 `.md`）即为地址中的编号。新文章的文件名就是 `post_id.md`，因此只要在 Pages CMS 或手动创建文件时使用未占用的编号（现有最大为 608），地址会自动变成 `/archives/609.html` 这样的格式；旧文章因自带 `url` 字段，URL 保持不变。
+- `hugo.yaml` 中 `permalinks.page.posts` 设为 `/archives/:contentbasename`，即文件名（不含 `.md`）为地址中的编号
+- 文章通过 `content/posts/_index.md` 的 `cascade` 使用专用的 `HTMLPost` 输出格式（启用 ugly URL），因此输出为 `archives/609.html` 文件而非目录
+- 新文章的文件名就是 `post_id.md`，只要在 Pages CMS 或手动创建文件时使用未占用的编号，地址会自动变成 `/archives/609.html` 这样的格式
+- 旧文章因自带 `url` 字段，URL 保持不变
 
 > 部分文章正文使用 `{{< figure src="..." >}}` 短代码。这类内容在富文本编辑器中可能被改写，建议直接用文本编辑。
 
