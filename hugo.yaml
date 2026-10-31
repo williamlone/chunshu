@@ -5,6 +5,8 @@ theme: PaperMod
 hasCJKLanguage: true
 summaryLength: 200
 paginate: 10
+buildFuture: true
+buildExpired: false
 taxonomies:
   category: categories
   tag: tags
