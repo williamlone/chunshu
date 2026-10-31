@@ -7,6 +7,7 @@ summaryLength: 200
 paginate: 10
 buildFuture: true
 buildExpired: false
+uglyURLs: true
 taxonomies:
   category: categories
   tag: tags
@@ -16,7 +17,7 @@ permalinks:
   term:
     category: /category/:slug/
   page:
-    posts: /archives/:contentbasename.html
+    posts: /archives/:contentbasename
 params:
   description: A writer's life
   comments: true
@@ -35,6 +36,17 @@ outputs:
     - RSS
     - JSON
 outputFormats:
+  HTML:
+    mediaType: text/html
+    baseName: index
+    rel: canonical
+    isHTML: true
+    noUgly: true
+  HTMLPost:
+    mediaType: text/html
+    baseName: index
+    rel: canonical
+    isHTML: true
   RSS:
     mediaType: application/rss+xml
     baseName: feed
