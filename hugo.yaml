@@ -13,6 +13,8 @@ permalinks:
     category: /category/
   term:
     category: /category/:slug/
+  page:
+    posts: /archives/:contentbasename.html
 params:
   description: A writer's life
   comments: true

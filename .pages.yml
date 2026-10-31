@@ -15,7 +15,7 @@ content:
     type: collection
     path: content/posts
     filename:
-      template: "{year}-{month}-{day}-{title}.md"
+      template: "{post_id}.md"
       field: false
     view:
       fields: [title, date, categories]
@@ -64,11 +64,12 @@ content:
       - name: url
         label: 固定链接
         type: string
-        description: 旧文章为 /archives/N.html，请勿修改；新文章留空即可自动生成。
+        description: 旧文章为 /archives/编号.html，请勿修改；新文章留空，保存后会按「文章编号」自动生成 /archives/编号.html。
       - name: post_id
-        label: 文章 ID
+        label: 文章编号
         type: string
-        description: WordPress 迁移编号，用于评论关联；新文章可留空。
+        required: true
+        description: 决定文章地址 /archives/编号.html。新文章请填未使用的编号（现有最大为 608，可用 609、610……）。
       - name: body
         label: 正文
         type: rich-text

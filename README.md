@@ -89,11 +89,21 @@ hugo --gc --minify
 | `title` | 标题 |
 | `date` | 发布时间，格式 `2024-10-29T12:20:24+00:00` |
 | `categories` | 分类英文 slug，可多个 |
-| `url` | 固定链接，旧文章为 `/archives/N.html`，新文章可留空 |
-| `post_id` | 迁移编号，用于评论关联，新文章可留空 |
+| `url` | 固定链接。旧文章为 `/archives/编号.html` 并保持不变；新文章留空即可 |
+| `post_id` | 文章编号，决定新文章的地址 `/archives/编号.html`，也是评论关联依据 |
 | 正文 | frontmatter 之后的 Markdown 内容 |
 
 `guid`、`views`、`duoshuo_thread_id` 等为迁移遗留字段，可保留不动。
+
+**文章地址规则**：`hugo.yaml` 中配置了
+
+```yaml
+permalinks:
+  page:
+    posts: /archives/:contentbasename.html
+```
+
+即文件名（不含 `.md`）即为地址中的编号。新文章的文件名就是 `post_id.md`，因此只要在 Pages CMS 或手动创建文件时使用未占用的编号（现有最大为 608），地址会自动变成 `/archives/609.html` 这样的格式；旧文章因自带 `url` 字段，URL 保持不变。
 
 > 部分文章正文使用 `{{< figure src="..." >}}` 短代码。这类内容在富文本编辑器中可能被改写，建议直接用文本编辑。
 
